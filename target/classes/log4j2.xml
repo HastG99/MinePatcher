@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%d{HH:mm:ss}] [%level] %msg%n"/>
+        </Console>
+
+        <File name="all_logs_file" fileName="debug.log">
+            <PatternLayout>
+                <pattern>[%d] [%t/%level] [%C{0}.%M:%L] %m%n</pattern>
+            </PatternLayout>
+        </File>
+        <File name="errors_file" fileName="error.log">
+            <PatternLayout>
+                <pattern>[%d] [%t/%level] [%C{0}.%M:%L] %m%n</pattern>
+            </PatternLayout>
+        </File>
+        <File name="logs_file" fileName="minepatcher.log">
+            <PatternLayout>
+                <pattern>[%d{HH:mm:ss}] [%level] [%C{0}] %m%n</pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Root level="all">
+            <AppenderRef ref="Console" level="info"/>
+            <AppenderRef ref="logs_file" level="info"/>
+            <AppenderRef ref="errors_file" level="error"/>
+            <AppenderRef ref="all_logs_file"/>
+        </Root>
+    </Loggers>
+</Configuration>
