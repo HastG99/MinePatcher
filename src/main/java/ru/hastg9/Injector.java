@@ -30,8 +30,16 @@ public class Injector {
 
     private int SK = 0, SU = 0;
 
+    public Injector() {
+        this(Settings.HACK_API);
+    }
+
     public Injector(String injectFileName) {
         this.injectFileName = injectFileName;
+    }
+
+    public void inject() {
+        inject(Settings.INPUT_FILE_PATH, Settings.OUTPUT_FILE_PATH);
     }
 
     public void inject(String input, String output) {
@@ -202,16 +210,21 @@ public class Injector {
     public ClassFile loadHackApi(String packageName, String className, String methodName) throws IOException {
         File parent = new File("inject");
 
-        if(!parent.exists()) {
+        if(!parent.exists())
             parent.mkdir();
-
-            throw new FileNotFoundException("Directory " + parent.getName() + " does not exist!");
-        }
 
         File injectFile = new File(parent, injectFileName);
 
-        if(!injectFile.exists())
-            throw new FileNotFoundException("File " + injectFileName + " does not exist!");
+        if(!injectFile.exists()) {
+            InputStream inputStream = MinePatcher.class
+                    .getClassLoader()
+                    .getResourceAsStream("inject/HackApi.class");
+
+            if(inputStream == null)
+                throw new NullPointerException("InputStream cannot be null.");
+
+            Files.copy(inputStream, injectFile.toPath());
+        }
 
         DataInputStream hackAPI = new DataInputStream(new FileInputStream(injectFile));
         ClassFile classFile = new ClassFile(hackAPI);
